@@ -8,13 +8,10 @@ class Queue {
   dequeue() {
     return this.items.shift();
   }
-  isEmpty() {
-    return this.items.length === 0;
-  }
 }
 
 function possibleMoves(x, y) {
-  const moves = [
+  return [
     [x - 2, y - 1],
     [x - 2, y + 1],
     [x - 1, y - 2],
@@ -24,7 +21,6 @@ function possibleMoves(x, y) {
     [x + 2, y - 1],
     [x + 2, y + 1],
   ];
-  return moves.filter(([x, y]) => x >= 0 && x < 8 && y >= 0 && y < 8);
 }
 
 function knightMoves(start, end) {
@@ -32,7 +28,7 @@ function knightMoves(start, end) {
   const queue = new Queue();
   queue.enqueue([start, [start]]);
 
-  while (!queue.isEmpty()) {
+  while (queue.items.length) {
     const [currentPos, path] = queue.dequeue();
     const [x, y] = currentPos;
 
@@ -58,7 +54,7 @@ console.log(knightMoves([0, 0], [1, 2])); // [[0,0],[1,2]]
 console.log(knightMoves([0, 0], [3, 3])); // [[0,0],[1,2],[3,3]]
 console.log(knightMoves([3, 3], [0, 0])); // [[3,3],[1,2],[0,0]]
 
-// Function that will console.log the tree in a structured format
+// ADAPT THIS - Function that will console.log the tree in a structured format
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -71,5 +67,3 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
-
-prettyPrint(bst.root);
