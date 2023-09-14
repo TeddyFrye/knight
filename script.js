@@ -1,3 +1,4 @@
+//Time for coding sesh with Charles
 class Node {
   constructor(data) {
     this.data = data;
